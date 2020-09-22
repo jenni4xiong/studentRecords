@@ -1,6 +1,10 @@
 const express = require('express');
 const app = express();
 const port = 3000;
+const bodyParser = require('body-parser');
+const db = require('./database.js');
+
+app.use(bodyParser.json());
 
 /* 
 Build a single RESTful microservice accessible over HTTP 
@@ -17,11 +21,15 @@ The RESTful API should support basic authentication
  The microservice can be built using any framework and/or language.
 */
 app.get('/studentRecords', (req, res) => {
-
+  db.getAllStudents()
+    .then((students) => res.send(students))
+    .catch((err) => res.sendStatus(400).send(err))
 });
 
 app.post('/studentRecords', (req, res) => {
-
+  db.addStudent(req.body)
+    .then(() => res.sendStatus(200))
+    .catch((err) => res.sendStatus(400).send(err))
 });
 
 app.patch('/studentRecords', (req, res) => {
