@@ -3,6 +3,7 @@ const app = express();
 const port = 3000;
 const bodyParser = require('body-parser');
 const db = require('./database.js');
+const middleware = require('./middleware.js');
 
 app.use(bodyParser.json());
 
@@ -20,10 +21,8 @@ The RESTful API should support basic authentication
  (fake data with non-sensical fields is fine). 
  The microservice can be built using any framework and/or language.
 */
-app.get('/studentRecords', (req, res) => {
-  db.getAllStudents()
-    .then((students) => res.send(students))
-    .catch((err) => res.sendStatus(400).send(err))
+app.get('/studentRecords', middleware.paginatedResults(db.Student), (req, res) => {
+  res.send(res.paginatedResults)
 });
 
 app.post('/studentRecords', (req, res) => {
