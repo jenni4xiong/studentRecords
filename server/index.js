@@ -37,7 +37,9 @@ app.patch('/studentRecords', (req, res) => {
 })
 
 app.delete('/studentRecords', (req, res) => {
-
+  db.deleteStudent(req.body)
+    .then(() => res.sendStatus(200))
+    .catch((err) => res.sendStatus(400).send(err))
 });
 
 app.listen(port, () => {

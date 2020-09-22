@@ -17,7 +17,11 @@ const getAllStudents = () => {
 }
 
 const addStudent = (student) => {
-  return Student.create(student)
+  return Student.create(student);
 }
 
-module.exports = { getAllStudents, addStudent }
+const deleteStudent = (student) => {
+  return Student.deleteOne({ _id: student._id });
+}
+
+module.exports = { getAllStudents, addStudent, deleteStudent };
