@@ -1,7 +1,6 @@
-const express = require('express')
-const app = express()
-const port = 3000
-
+const express = require('express');
+const app = express();
+const port = 3000;
 
 /* 
 Build a single RESTful microservice accessible over HTTP 
@@ -17,10 +16,22 @@ The RESTful API should support basic authentication
  (fake data with non-sensical fields is fine). 
  The microservice can be built using any framework and/or language.
 */
-app.get('/', (req, res) => {
-  res.send('Hello World!')
+app.get('/studentRecords', (req, res) => {
+
+});
+
+app.post('/studentRecords', (req, res) => {
+
+});
+
+app.patch('/studentRecords', (req, res) => {
+
 })
+
+app.delete('/studentRecords', (req, res) => {
+
+});
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
-})
+});
