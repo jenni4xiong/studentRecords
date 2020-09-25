@@ -22,22 +22,26 @@ The RESTful API should support basic authentication
  The microservice can be built using any framework and/or language.
 */
 
-app.get('/studentRecords', middleware.paginatedResults(db.Student), (req, res) => {
+app.get('/students', middleware.paginatedResults(db.Student), (req, res) => {
   console.log('total count:', res.totalCount)
   res.send({ studentRecords: res.paginatedResults, totalRecords: res.totalCount })
 });
 
-app.post('/studentRecords', (req, res) => {
+app.get('/students/:id', (req, res) => {
+
+})
+
+app.post('/students', (req, res) => {
   db.addStudent(req.body)
     .then(() => res.sendStatus(200))
     .catch((err) => res.sendStatus(400).send(err))
 });
 
-app.patch('/studentRecords', (req, res) => {
+app.patch('/students/:id', (req, res) => {
 
 })
 
-app.delete('/studentRecords', (req, res) => {
+app.delete('/students/:id', (req, res) => {
   db.deleteStudent(req.body)
     .then(() => res.sendStatus(200))
     .catch((err) => res.sendStatus(400).send(err))
