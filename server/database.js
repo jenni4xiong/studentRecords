@@ -5,7 +5,6 @@ const Schema = mongoose.Schema;
 const studentSchema = new Schema({
   name: String,
   grade: Number,
-  gender: String,
   age: Number
 }, { autoCreate: true });
 
