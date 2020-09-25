@@ -21,7 +21,9 @@ The RESTful API should support basic authentication
  (fake data with non-sensical fields is fine). 
  The microservice can be built using any framework and/or language.
 */
+
 app.get('/studentRecords', middleware.paginatedResults(db.Student), (req, res) => {
+  console.log('total count:', res.totalCount)
   res.send({ studentRecords: res.paginatedResults, totalRecords: res.totalCount })
 });
 

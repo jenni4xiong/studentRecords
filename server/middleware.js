@@ -7,7 +7,7 @@ const paginatedResults = (model) => {
     const startIndex = (page - 1) * limit;
     const endIndex = (page) * limit;
 
-    const results = {}
+    // const results = {}
 
     // if (startIndex > 0) {
     //   results.previous = {
@@ -24,12 +24,11 @@ const paginatedResults = (model) => {
     // }
 
     if (sortOrder) {
-      results.results = await model.find().sort({ [sortOrder]: 1 }).limit(limit).skip(startIndex).exec()
+      res.paginatedResults = await model.find().sort({ [sortOrder]: 1 }).limit(limit).skip(startIndex).exec()
     } else {
-      results.results = await model.find().limit(limit).skip(startIndex).exec()
+      res.paginatedResults = await model.find().limit(limit).skip(startIndex).exec()
     }
-    res.totalCount = await model.find().length
-    res.paginatedResults = results;
+    res.totalCount = await model.count().exec();
     next();
   }
 }
