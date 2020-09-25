@@ -23,8 +23,8 @@ The RESTful API should support basic authentication
 */
 
 app.get('/students', middleware.paginatedResults(db.Student), (req, res) => {
-  console.log('total count:', res.totalCount)
-  res.send({ studentRecords: res.paginatedResults, totalRecords: res.totalCount })
+  res.set('x-total-count', res.totalCount);
+  res.send({ studentRecords: res.paginatedResults });
 });
 
 app.get('/students/:id', (req, res) => {
@@ -34,7 +34,7 @@ app.get('/students/:id', (req, res) => {
 app.post('/students', (req, res) => {
   db.addStudent(req.body)
     .then(() => res.sendStatus(200))
-    .catch((err) => res.sendStatus(400).send(err))
+    .catch((err) => res.sendStatus(400).send(err));
 });
 
 app.patch('/students/:id', (req, res) => {
@@ -44,7 +44,7 @@ app.patch('/students/:id', (req, res) => {
 app.delete('/students/:id', (req, res) => {
   db.deleteStudent(req.body)
     .then(() => res.sendStatus(200))
-    .catch((err) => res.sendStatus(400).send(err))
+    .catch((err) => res.sendStatus(400).send(err));
 });
 
 app.listen(port, () => {
