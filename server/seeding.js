@@ -1,5 +1,4 @@
 const faker = require('faker');
-const { Mongoose } = require('mongoose');
 const db = require('./database.js');
 
 const create200Students = () => {
@@ -18,4 +17,16 @@ const create200Students = () => {
     .then(() => console.log('successfully inputed all students'))
 };
 
-create200Students();
+const userSchena = new db.Schema({
+  auth: String
+}, { autoCreate: true });
+const User = db.mongoose.model('user', userSchena);
+
+const createUser = () => {
+  User.create({ auth: 'Basic dXNlcjp1c2Vy' })
+    .then(() => console.log('created user'))
+    .catch((err) => console.log('ERROR when creating user'));
+}
+
+// create200Students();
+createUser();

@@ -23,6 +23,7 @@ The RESTful API should support basic authentication
 */
 
 app.get('/students', middleware.paginatedResults(db.Student), (req, res) => {
+  console.log('authorization: ', req.headers.authorization)
   res.set('x-total-count', res.totalCount);
   res.send({ studentRecords: res.paginatedResults });
 });
