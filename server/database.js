@@ -10,12 +10,18 @@ const studentSchema = new Schema({
 
 const Student = mongoose.model('student', studentSchema)
 
+const getStudent = (id) => {
+  return Student.find({ _id: id })
+}
+
 const addStudent = (student) => {
   return Student.create(student);
 }
 
-const deleteStudent = (student) => {
-  return Student.deleteOne({ _id: student._id });
+//5f69c40ae9906e1d37caf114
+
+const deleteStudent = (id) => {
+  return Student.deleteOne({ _id: id });
 }
 
-module.exports = { Student, addStudent, deleteStudent };
+module.exports = { Student, getStudent, addStudent, deleteStudent };

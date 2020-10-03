@@ -28,7 +28,9 @@ app.get('/students', middleware.paginatedResults(db.Student), (req, res) => {
 });
 
 app.get('/students/:id', (req, res) => {
-
+  db.getStudent(req.params.id)
+    .then((student) => res.send(student))
+    .catch((err) => res.sendStatus(400).send(err));
 })
 
 app.post('/students', (req, res) => {
@@ -42,7 +44,7 @@ app.patch('/students/:id', (req, res) => {
 })
 
 app.delete('/students/:id', (req, res) => {
-  db.deleteStudent(req.body)
+  db.deleteStudent(req.params.id)
     .then(() => res.sendStatus(200))
     .catch((err) => res.sendStatus(400).send(err));
 });
