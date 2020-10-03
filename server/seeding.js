@@ -28,5 +28,5 @@ const createUser = () => {
     .catch((err) => console.log('ERROR when creating user'));
 }
 
-// create200Students();
+create200Students();
 createUser();
