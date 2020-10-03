@@ -18,8 +18,6 @@ const addStudent = (student) => {
   return Student.create(student);
 }
 
-//5f69c40ae9906e1d37caf114
-
 const deleteStudent = (id) => {
   return Student.deleteOne({ _id: id });
 }
