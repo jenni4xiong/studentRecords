@@ -18,8 +18,12 @@ const addStudent = (student) => {
   return Student.create(student);
 }
 
+const updateStudent = (id, attribute) => {
+  return Student.findOneAndUpdate({ _id: id }, attribute)
+}
+
 const deleteStudent = (id) => {
   return Student.deleteOne({ _id: id });
 }
 
-module.exports = { Student, getStudent, addStudent, deleteStudent };
+module.exports = { Student, getStudent, addStudent, updateStudent, deleteStudent };

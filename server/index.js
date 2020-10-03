@@ -31,7 +31,7 @@ app.get('/students/:id', (req, res) => {
   db.getStudent(req.params.id)
     .then((student) => res.send(student))
     .catch((err) => res.sendStatus(400).send(err));
-})
+});
 
 app.post('/students', (req, res) => {
   db.addStudent(req.body)
@@ -40,8 +40,10 @@ app.post('/students', (req, res) => {
 });
 
 app.patch('/students/:id', (req, res) => {
-
-})
+  db.updateStudent(req.params.id, req.body)
+    .then(() => res.sendStatus(200))
+    .catch((err) => res.sendStatus(400).send(err));
+});
 
 app.delete('/students/:id', (req, res) => {
   db.deleteStudent(req.params.id)
