@@ -22,11 +22,11 @@ const userSchena = new db.Schema({
 }, { autoCreate: true });
 const User = db.mongoose.model('user', userSchena);
 
-const createUser = () => {
-  User.create({ auth: 'Basic dXNlcjp1c2Vy' })
-    .then(() => console.log('created user'))
-    .catch((err) => console.log('ERROR when creating user'));
-}
+// const createUser = () => {
+//   User.create({ auth: 'Basic dXNlcjp1c2Vy' })
+//     .then(() => console.log('created user'))
+//     .catch((err) => console.log('ERROR when creating user'));
+// }
 
 create200Students();
-createUser();
+// createUser();

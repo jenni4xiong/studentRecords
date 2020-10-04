@@ -3,9 +3,11 @@ const app = express();
 const port = 3000;
 const bodyParser = require('body-parser');
 const db = require('./database.js');
-const middleware = require('./middleware.js');
+const pagination = require('./pagination.js');
+const auth = require('./auth.js');
 
 app.use(bodyParser.json());
+app.use(auth);
 
 /* 
 Build a single RESTful microservice accessible over HTTP 
@@ -22,8 +24,12 @@ The RESTful API should support basic authentication
  The microservice can be built using any framework and/or language.
 */
 
-app.get('/students', middleware.paginatedResults(db.Student), (req, res) => {
-  console.log('authorization: ', req.headers.authorization)
+/*
+  TODO: check to see if auth is in db for all requests
+  TODO: Front-end 
+*/
+
+app.get('/students', pagination(db.Student), (req, res) => {
   res.set('x-total-count', res.totalCount);
   res.send({ studentRecords: res.paginatedResults });
 });
