@@ -24,11 +24,6 @@ The RESTful API should support basic authentication
  The microservice can be built using any framework and/or language.
 */
 
-/*
-  TODO: check to see if auth is in db for all requests
-  TODO: Front-end 
-*/
-
 app.get('/students', pagination(db.Student), (req, res) => {
   res.set('x-total-count', res.totalCount);
   res.send({ studentRecords: res.paginatedResults });
