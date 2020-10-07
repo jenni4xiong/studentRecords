@@ -1,7 +1,7 @@
 #header-container {
   background-color: #002673;
   margin: 0;
-  height: 12vh;
+  height: 8vh;
   display: flex;
   align-items: center;
 }
@@ -16,5 +16,5 @@
   font-weight: bold;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   color: #FFB570;
-  font-size: min(5vw, 5vh);
+  font-size: min(4vw, 4vh);
 }

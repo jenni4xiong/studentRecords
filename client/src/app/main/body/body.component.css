@@ -1,18 +1,24 @@
 #body-container {
-  width: 70vw;
+  width: 80vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: flex-start;
 }
 
 #list-and-profile-container {
   display: flex;
   justify-content: center;
-  width: 100%;
+  width: 80vw;
+  height:84vh;
+  margin-top:2vh;
 }
 
 #add-student-container {
   display: flex;
   justify-content: center;
+  background-color: white;
+  margin-top: 2vh;
+  height: 10vh;
+  border-radius: 15px;
 }
