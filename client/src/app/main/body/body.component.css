@@ -1,0 +1,18 @@
+#body-container {
+  width: 70vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+
+#list-and-profile-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+#add-student-container {
+  display: flex;
+  justify-content: center;
+}
