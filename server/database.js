@@ -26,4 +26,4 @@ const deleteStudent = (id) => {
   return Student.deleteOne({ _id: id });
 }
 
-module.exports = { mongoose, Schema, Student, getStudent, addStudent, updateStudent, deleteStudent };
+module.exports = { getStudent, addStudent, updateStudent, deleteStudent };

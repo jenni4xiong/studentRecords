@@ -17,9 +17,4 @@ const createStudents = (amount) => {
     .then(() => console.log('successfully inputed all students'))
 };
 
-const userSchena = new db.Schema({
-  auth: String
-}, { autoCreate: true });
-const User = db.mongoose.model('user', userSchena);
-
 createStudents(200);
