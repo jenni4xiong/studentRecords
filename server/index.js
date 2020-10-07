@@ -8,7 +8,7 @@ const auth = require('./auth.js');
 
 app.use(bodyParser.json());
 app.use(auth);
-app.use(express.static('../client/src'))
+app.use(express.static('../client/dist'))
 
 app.get('/students', pagination(db.Student), (req, res) => {
   res.set('x-total-count', res.totalCount);
