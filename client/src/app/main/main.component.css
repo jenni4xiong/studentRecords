@@ -1,0 +1,6 @@
+#main-container {
+  display: flex;
+  justify-content: center;
+  background-color: #F0E9E6;
+  height: 100vh
+}
