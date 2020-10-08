@@ -8,7 +8,6 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./add-student.component.css']
 })
 export class AddStudentComponent implements OnInit {
-
   name: string;
   age: number;
   grade: number;

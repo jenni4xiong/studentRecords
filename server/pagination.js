@@ -11,7 +11,7 @@ const paginatedResults = (model) => {
     } else {
       res.paginatedResults = await model.find().limit(limit).skip(startIndex).exec()
     }
-    res.totalCount = await model.count().exec();
+    res.totalCount = await model.countDocuments().exec();
     next();
   }
 }
