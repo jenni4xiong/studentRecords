@@ -9,6 +9,7 @@ import { HttpClient } from '@angular/common/http';
 export class StudentListComponent implements OnInit {
   studentList: any = []
   page: number = 1
+  id: string = ''
 
   constructor(private http: HttpClient) { }
 
@@ -17,8 +18,12 @@ export class StudentListComponent implements OnInit {
       .subscribe(data => this.studentList = data.studentRecords)
   }
 
+  handleStudentClick(data: any) {
+    console.log('student clicked', data._id)
+  }
+
   ngOnInit(): void {
-    this.getStudentList(1, 15, null)
+    this.getStudentList(1, 25, null)
   }
 
 }
