@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-add-student',
@@ -7,9 +8,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddStudentComponent implements OnInit {
 
-  constructor() { }
+  name: string;
+  age: number;
+  grade: number;
+  imageUrl: string;
+
+  constructor(private formBuilder: FormBuilder) {
+    this.formGroup = this.formBuilder.group({
+      name: '',
+      age: null,
+      grade: null,
+      imageUrl: '',
+    })
+  }
+
+  onSubmit() {
+
+  }
 
   ngOnInit(): void {
+
   }
 
 }
