@@ -3,9 +3,10 @@ mongoose.connect('mongodb://localhost:27017/studentRecords', { useNewUrlParser: 
 const Schema = mongoose.Schema;
 
 const studentSchema = new Schema({
+  picture: String,
   name: String,
   grade: Number,
-  age: Number
+  age: Number,
 }, { autoCreate: true });
 
 const Student = mongoose.model('student', studentSchema)
@@ -26,4 +27,4 @@ const deleteStudent = (id) => {
   return Student.deleteOne({ _id: id });
 }
 
-module.exports = { getStudent, addStudent, updateStudent, deleteStudent };
+module.exports = { Student, getStudent, addStudent, updateStudent, deleteStudent };
