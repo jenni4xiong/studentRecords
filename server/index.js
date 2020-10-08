@@ -11,7 +11,6 @@ app.use(auth);
 app.use(express.static('../client/dist'))
 
 app.get('/students', pagination(db.Student), (req, res) => {
-  console.log('inside get')
   res.set('x-total-count', res.totalCount);
   res.send({ studentRecords: res.paginatedResults });
 });
@@ -23,8 +22,9 @@ app.get('/students/:id', (req, res) => {
 });
 
 app.post('/students', (req, res) => {
+  console.log('post: ', req.body)
   db.addStudent(req.body)
-    .then(() => res.sendStatus(200))
+    .then((data) => res.send(data))
     .catch((err) => res.sendStatus(400).send(err));
 });
 

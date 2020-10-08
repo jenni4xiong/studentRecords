@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-add-student',
@@ -13,7 +14,7 @@ export class AddStudentComponent implements OnInit {
   grade: number;
   imageUrl: string;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private http: HttpClient) {
     this.formGroup = this.formBuilder.group({
       name: '',
       age: null,
@@ -23,11 +24,17 @@ export class AddStudentComponent implements OnInit {
   }
 
   onSubmit() {
-
+    const student = {
+      name: this.formGroup.controls.name.value,
+      age: this.formGroup.controls.age.value,
+      grade: this.formGroup.controls.grade.value,
+      imageUrl: this.formGroup.controls.imageUrl.value,
+    }
+    this.addStudent(student)
   }
 
-  ngOnInit(): void {
-
+  addStudent(student) {
+    this.http.post('/students', student)
+      .subscribe((data) => console.log('successful post', data))
   }
-
 }
