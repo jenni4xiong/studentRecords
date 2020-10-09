@@ -6,7 +6,6 @@ const paginatedResults = (model) => {
     const limit = parseInt(req.query.limit);
     const sortOrder = req.query.sortOrder;
     const order = req.query.order
-    console.log('pagination', page, limit, sortOrder, order)
 
     const startIndex = (page - 1) * limit;
 
