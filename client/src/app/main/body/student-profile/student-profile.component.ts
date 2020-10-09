@@ -19,7 +19,7 @@ export class StudentProfileComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private http: HttpClient) { }
 
-  studentPicture: string = ''
+  studentPicture: string = 'https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png'
 
   createProfile(data) {
     console.log('creating profile', data)
@@ -32,7 +32,6 @@ export class StudentProfileComponent implements OnInit {
     })
     this.studentPicture = student.picture
     this.studentId = student._id
-    console.log('student', this.profileForm)
   }
 
   getStudent(id: string) {
@@ -55,7 +54,6 @@ export class StudentProfileComponent implements OnInit {
   }
 
   updateStudent(id: string, student: any) {
-    console.log('student', student, id)
     this.http.put(`/students/${id}`, student)
       .subscribe((data) => console.log(data))
   }
