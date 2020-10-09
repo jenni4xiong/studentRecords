@@ -19,35 +19,47 @@ export class StudentListComponent implements OnInit {
   page: number = 1;
   id: string = '';
   limit: number = 25;
-  gradeOrder: number = 1;
-  nameOrder: number = 1;
-  currentSort: any = null;
+  gradeOrder: number;
+  nameOrder: number;
+  sortBy: any = null;
   @Input() shouldRerender: boolean
   @Output() selectStudent = new EventEmitter<string>()
+  @Output() confirmRerender = new EventEmitter<boolean>()
 
   constructor(private http: HttpClient) { }
 
-  getStudentList(page: number, limit: number, sortBy: any, order: any) {
-    let sort;
-    if (sortBy) {
-      sort = `&sortBy=${sortBy}&order=${order}`
+  getStudentList() {
+    console.log('get students by sort order:', this.sortBy, this.nameOrder)
+    let order: any;
+    if (this.sortBy === null) {
+      order = null
+    } else if (this.sortBy === 'name') {
+      order = this.nameOrder
+    } else {
+      order = this.gradeOrder;
+    }
+
+    let sort: any;
+    if (this.sortBy) {
+      sort = `&sortBy=${this.sortBy}&order=${order}`
     } else {
       sort = ``
     }
-    this.http.get(`/students?page=${page}&limit=${limit}${sort}`)
+
+    this.http.get(`/students?page=${this.page}&limit=${this.limit}${sort}`)
       .subscribe((data: any) => { this.studentList = data.studentRecords; })
   }
 
   sort(sort: string) {
+    console.log('in sort')
     let order;
     if (sort === 'grade') {
       order = this.gradeOrder;
-      this.currentSort = 'grade';
+      this.sortBy = 'grade';
     } else {
       order = this.nameOrder;
-      this.currentSort = 'name'
+      this.sortBy = 'name'
     }
-    this.getStudentList(this.page, this.limit, sort, order);
     if (order === 1) {
       if (sort === 'grade') this.gradeOrder = -1;
       else this.nameOrder = -1
@@ -56,6 +68,7 @@ export class StudentListComponent implements OnInit {
       if (sort === 'grade') this.gradeOrder = 1;
       else this.nameOrder = 1;
     }
+    this.getStudentList();
   }
 
   handleStudentClick(data: any) {
@@ -63,30 +76,23 @@ export class StudentListComponent implements OnInit {
   }
 
   handlePageClick(type: string) {
-    let order;
     if (type === 'next') this.page += 1
     else {
       if (this.page > 1) this.page -= 1
     }
-    if (this.currentSort === null) order = null
-    else if (this.currentSort === 'name') order = 'name'
-    else order = 'grade'
-
-    console.log(this.page, this.limit, this.currentSort, order)
-    this.getStudentList(this.page, this.limit, this.currentSort, order)
+    this.getStudentList()
   }
 
   ngOnChanges(changes): void {
-    let order;
     if (this.shouldRerender) {
-      if (this.currentSort === null) order = null
-      else if (this.currentSort === 'name') order = this.nameOrder
-      else order = this.gradeOrder
-      this.getStudentList(this.page, this.limit, this.currentSort, order)
+      this.getStudentList()
+      this.confirmRerender.emit();
     }
   }
 
   ngOnInit(): void {
-    this.getStudentList(1, this.limit, null, null)
+    this.nameOrder = -1;
+    this.gradeOrder = -1;
+    this.getStudentList()
   }
 }

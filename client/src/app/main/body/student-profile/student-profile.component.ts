@@ -51,7 +51,7 @@ export class StudentProfileComponent implements OnInit {
           picture: [''],
         })
       )
-    this.rerenderList.emit(true)
+    this.rerenderList.emit()
   }
 
   updateStudent(id: string, student: any) {

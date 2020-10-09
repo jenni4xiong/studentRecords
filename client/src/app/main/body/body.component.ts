@@ -9,9 +9,9 @@ export class BodyComponent implements OnInit {
   studentId: string = '';
   shouldRerender: boolean = false;
 
-  rerenderList(bool: boolean) {
+  toggleRerender(bool: boolean) {
     console.log('bool', bool)
-    this.shouldRerender = true;
+    this.shouldRerender = bool;
   }
 
   selectStudent(id: string) {
