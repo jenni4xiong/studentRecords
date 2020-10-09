@@ -29,8 +29,9 @@ app.post('/students', (req, res) => {
 });
 
 app.put('/students/:id', (req, res) => {
+  console.log('inside put')
   db.updateStudent(req.params.id, req.body)
-    .then(() => res.sendStatus(200))
+    .then((data) => res.send(data))
     .catch((err) => res.sendStatus(400).send(err));
 });
 

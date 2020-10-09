@@ -55,15 +55,15 @@ export class StudentProfileComponent implements OnInit {
   updateStudent(id: string, student: any) {
     console.log('student', student, id)
     this.http.put(`/students/${id}`, student)
+      .subscribe((data) => console.log(data))
   }
 
   onSubmit(id: string) {
-    console.log('checking name', this.formGroup)
     const studentInfo = {
-      name: this.formGroup.controls.name.value,
-      age: this.formGroup.controls.age.value,
-      grade: this.formGroup.controls.grade.value,
-      imageUrl: this.formGroup.controls.imageUrl.value,
+      name: this.profileForm.controls.name.value,
+      age: this.profileForm.controls.age.value,
+      grade: this.profileForm.controls.grade.value,
+      imageUrl: this.profileForm.controls.picture.value,
     }
     this.updateStudent(id, studentInfo)
   }
