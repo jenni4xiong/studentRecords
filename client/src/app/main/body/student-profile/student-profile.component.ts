@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 
@@ -9,6 +9,7 @@ import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 })
 export class StudentProfileComponent implements OnInit {
   @Input() studentId: string
+  @Output() rerenderList = new EventEmitter<boolean>()
   formGroup: FormGroup;
   profileForm = this.formBuilder.group({
     name: [''],
@@ -50,6 +51,7 @@ export class StudentProfileComponent implements OnInit {
           picture: [''],
         })
       )
+    this.rerenderList.emit(true)
   }
 
   updateStudent(id: string, student: any) {

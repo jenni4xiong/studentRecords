@@ -4,15 +4,23 @@ const paginatedResults = (model) => {
   return async (req, res, next) => {
     const page = parseInt(req.query.page);
     const limit = parseInt(req.query.limit);
-    const sortOrder = req.query.sortOrder;
+    const sortBy = req.query.sortBy;
     const order = req.query.order
 
     const startIndex = (page - 1) * limit;
 
-    if (sortOrder) {
-      if (order === '1') res.paginatedResults = await model.find().sort({ [sortOrder]: 1 }).limit(limit).skip(startIndex).exec()
-      else res.paginatedResults = await model.find().sort({ [sortOrder]: -1 }).limit(limit).skip(startIndex).exec()
-    } else res.paginatedResults = await model.find().limit(limit).skip(startIndex).exec()
+    // if (sortBy) {
+    //   if (order === '1') res.paginatedResults = await model.find().sort({ [sortBy]: 1 }).limit(limit).skip(startIndex).exec()
+    //   else res.paginatedResults = await model.find().sort({ [sortBy]: -1 }).limit(limit).skip(startIndex).exec()
+    // } else res.paginatedResults = await model.find().limit(limit).skip(startIndex).exec()
+    console.log('req.query', req.query)
+    if (sortBy) {
+      console.log('sortBy', sortBy)
+      res.paginatedResults = await model.find().sort({ [sortBy]: parseInt(order) }).limit(limit).skip(startIndex).exec()
+    } else {
+      res.paginatedResults = await model.find().limit(limit).skip(startIndex).exec()
+    }
+
     res.totalCount = await model.countDocuments().exec();
     next();
   }
