@@ -1,14 +1,14 @@
 <div id="student-profile-container">
   <h1 id="student-profile-title">Student Profile</h1>
-  <img id="student-picture" src="{{student.picture}}" alt="student picture" />
-  <form id="student-info" [formGroup]="formGroup" (ngSubmit)="onSubmit(student._id)">
+  <img id="student-picture" src="{{studentPicture}}" alt="student picture" />
+  <form id="student-info" [formGroup]="profileForm" (ngSubmit)="onSubmit(studentId)">
     <label>Name:</label>
-    <input type="text" value="{{student.name}}" formControlName="name" required>
+    <input type="text" formControlName="name" required>
     <label>Grade:</label>
-    <input type="text" value="{{student.grade}}" formControlName="grade" required>
+    <input type="text" formControlName="grade" required>
     <label>Age:</label>
-    <input type="text" value="{{student.age}}" formControlName="age" required>
+    <input type="text" formControlName="age" required>
     <button type="submit">Save</button>
   </form>
-  <button (click)="onDelete(student._id)">Delete</button>
+  <button (click)="onDelete(studentId)">Delete</button>
 </div>

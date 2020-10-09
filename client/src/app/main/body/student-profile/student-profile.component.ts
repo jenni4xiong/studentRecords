@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-student-profile',
@@ -10,21 +10,29 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 export class StudentProfileComponent implements OnInit {
   @Input() studentId: string
   formGroup: FormGroup;
+  profileForm = this.formBuilder.group({
+    name: [''],
+    age: [null],
+    grade: [null],
+    picture: [''],
+  })
 
-  constructor(private formBuilder: FormBuilder, private http: HttpClient) {
-    this.formGroup = this.formBuilder.group({
-      name: '',
-      age: null,
-      grade: null,
-      picture: '',
-    })
-  }
+  constructor(private formBuilder: FormBuilder, private http: HttpClient) { }
 
-  student: any = {}
+  studentPicture: string = ''
 
   createProfile(data) {
     console.log('creating profile', data)
-    this.student = data[0]
+    const student = data[0]
+    this.profileForm.patchValue({
+      name: student.name,
+      age: student.age,
+      grade: student.grade,
+      picture: student.picture,
+    })
+    this.studentPicture = student.picture
+    this.studentId = student._id
+    console.log('student', this.profileForm)
   }
 
   getStudent(id: string) {
@@ -36,12 +44,17 @@ export class StudentProfileComponent implements OnInit {
 
   onDelete(id: string) {
     this.http.delete(`/students/${id}`)
-    this.student = {}
+    this.profileForm.patchValue({
+      name: [''],
+      age: [null],
+      grade: [null],
+      picture: [''],
+    })
   }
 
   updateStudent(id: string, student: any) {
     console.log('student', student, id)
-    // this.http.put(`/students/${id}`, student)
+    this.http.put(`/students/${id}`, student)
   }
 
   onSubmit(id: string) {
