@@ -36,7 +36,6 @@ export class StudentListComponent implements OnInit {
       if (sort === 'grade') this.gradeOrder = 1;
       else this.nameOrder = 1;
     }
-    console.log('sort', sort, 'order', order)
   }
 
   // sortGrade() {

@@ -34,7 +34,6 @@ app.put('/students/:id', (req, res) => {
 });
 
 app.delete('/students/:id', (req, res) => {
-  console.log('inside delete')
   db.deleteStudent(req.params.id)
     .then(() => res.send())
     .catch((err) => res.sendStatus(400).send(err));

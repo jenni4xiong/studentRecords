@@ -22,7 +22,6 @@ export class StudentProfileComponent implements OnInit {
   studentPicture: string = 'https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png'
 
   createProfile(data) {
-    console.log('creating profile', data)
     const student = data[0]
     this.profileForm.patchValue({
       name: student.name,
