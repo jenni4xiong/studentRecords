@@ -13,6 +13,7 @@ export class StudentListComponent implements OnInit {
   id: string = '';
   limit: number = 25;
   gradeOrder: number = 1;
+  nameOrder: number = 1;
   @Output() selectStudent = new EventEmitter<string>()
 
   constructor(private http: HttpClient) { }
@@ -22,11 +23,27 @@ export class StudentListComponent implements OnInit {
       .subscribe((data: any) => this.studentList = data.studentRecords)
   }
 
-  sortGrade() {
-    this.getStudentList(this.page, this.limit, 'grade', this.gradeOrder)
-    if (this.gradeOrder === 1) this.gradeOrder = 0
-    else this.gradeOrder = 1
+  sort(sort: string) {
+    let order;
+    if (sort === 'grade') order = this.gradeOrder;
+    else order = this.nameOrder;
+    this.getStudentList(this.page, this.limit, sort, order);
+    if (order === 1) {
+      if (sort === 'grade') this.gradeOrder = 0;
+      else this.nameOrder = 0
+    }
+    else {
+      if (sort === 'grade') this.gradeOrder = 1;
+      else this.nameOrder = 1;
+    }
+    console.log('sort', sort, 'order', order)
   }
+
+  // sortGrade() {
+  //   this.getStudentList(this.page, this.limit, 'grade', this.gradeOrder)
+  //   if (this.gradeOrder === 1) this.gradeOrder = 0
+  //   else this.gradeOrder = 1
+  // }
 
   handleStudentClick(data: any) {
     this.selectStudent.emit(data._id)

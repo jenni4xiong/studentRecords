@@ -44,12 +44,14 @@ export class StudentProfileComponent implements OnInit {
 
   onDelete(id: string) {
     this.http.delete(`/students/${id}`)
-    this.profileForm.patchValue({
-      name: [''],
-      age: [null],
-      grade: [null],
-      picture: [''],
-    })
+      .subscribe(() =>
+        this.profileForm.patchValue({
+          name: [''],
+          age: [null],
+          grade: [null],
+          picture: [''],
+        })
+      )
   }
 
   updateStudent(id: string, student: any) {

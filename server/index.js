@@ -22,22 +22,21 @@ app.get('/students/:id', (req, res) => {
 });
 
 app.post('/students', (req, res) => {
-  console.log('post: ', req.body)
   db.addStudent(req.body)
     .then((data) => res.send(data))
     .catch((err) => res.sendStatus(400).send(err));
 });
 
 app.put('/students/:id', (req, res) => {
-  console.log('inside put')
   db.updateStudent(req.params.id, req.body)
     .then((data) => res.send(data))
     .catch((err) => res.sendStatus(400).send(err));
 });
 
 app.delete('/students/:id', (req, res) => {
+  console.log('inside delete')
   db.deleteStudent(req.params.id)
-    .then(() => res.sendStatus(200))
+    .then(() => res.send())
     .catch((err) => res.sendStatus(400).send(err));
 });
 
