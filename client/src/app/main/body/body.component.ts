@@ -10,7 +10,6 @@ export class BodyComponent implements OnInit {
 
   selectStudent(id: string) {
     this.studentId = id;
-    console.log('student id', this.studentId)
   }
 
   constructor() { }

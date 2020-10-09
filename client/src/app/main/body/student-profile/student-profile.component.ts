@@ -14,12 +14,15 @@ export class StudentProfileComponent implements OnInit {
   studentProfile: any = {}
 
   getStudent(id) {
-    this.http.get(`/students/${id}`)
-      .subscribe((data) => console.log(data))
+    if (id.length > 0) {
+      console.log('id:', id)
+      this.http.get(`/students/${id}`)
+        .subscribe((data) => console.log('got student', data))
+    }
   }
 
   ngOnChanges(changes): void {
-    console.log('changes: ', changes)
+    this.getStudent(changes.studentId.currentValue)
   }
 
   ngOnInit(): void {
