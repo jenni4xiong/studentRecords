@@ -3,7 +3,7 @@
     <app-add-student></app-add-student>
   </div>
   <div id="list-and-profile-container">
-    <app-student-list [shouldRerender]="shouldRerender" (confirmRerender)="toggleRerender(false)"
+    <app-student-list [shouldRerender]="shouldRerender" (toggleRerender)="toggleRerender(false)"
       (selectStudent)="selectStudent($event)"></app-student-list>
     <app-student-profile [studentId]="studentId" (rerenderList)="toggleRerender(true)"></app-student-profile>
   </div>

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output, Input, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 
 /*
   TODO: get num count from header
@@ -24,12 +24,11 @@ export class StudentListComponent implements OnInit {
   sortBy: any = null;
   @Input() shouldRerender: boolean
   @Output() selectStudent = new EventEmitter<string>()
-  @Output() confirmRerender = new EventEmitter<boolean>()
+  @Output() toggleRerender = new EventEmitter<boolean>()
 
   constructor(private http: HttpClient) { }
 
   getStudentList() {
-    console.log('get students by sort order:', this.sortBy, this.nameOrder)
     let order: any;
     if (this.sortBy === null) {
       order = null
@@ -46,8 +45,8 @@ export class StudentListComponent implements OnInit {
       sort = ``
     }
 
-    this.http.get(`/students?page=${this.page}&limit=${this.limit}${sort}`)
-      .subscribe((data: any) => { this.studentList = data.studentRecords; })
+    this.http.get(`/students?page=${this.page}&limit=${this.limit}${sort}`, { observe: 'response' })
+      .subscribe((data) => { this.studentList = data.body.studentRecords; console.log('headers from get', data.headers.get('x-total-count')) })
   }
 
   sort(sort: string) {
@@ -84,9 +83,9 @@ export class StudentListComponent implements OnInit {
   }
 
   ngOnChanges(changes): void {
-    if (this.shouldRerender) {
+    if (!changes.shouldRerender.previousValue && changes.shouldRerender.currentValue) {
       this.getStudentList()
-      this.confirmRerender.emit();
+      this.toggleRerender.emit(false);
     }
   }
 

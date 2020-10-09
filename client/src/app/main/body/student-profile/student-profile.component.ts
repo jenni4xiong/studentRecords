@@ -67,6 +67,7 @@ export class StudentProfileComponent implements OnInit {
       imageUrl: this.profileForm.controls.picture.value,
     }
     this.updateStudent(id, studentInfo)
+    this.rerenderList.emit(true)
   }
 
   ngOnChanges(changes): void {
