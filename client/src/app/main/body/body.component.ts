@@ -6,6 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./body.component.css']
 })
 export class BodyComponent implements OnInit {
+  studentId: string = '';
+
+  selectStudent(id: string) {
+    this.studentId = id;
+    console.log('student id', this.studentId)
+  }
 
   constructor() { }
 

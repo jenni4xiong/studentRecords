@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -7,11 +7,12 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './add-student.component.html',
   styleUrls: ['./add-student.component.css']
 })
-export class AddStudentComponent implements OnInit {
+export class AddStudentComponent {
   name: string;
   age: number;
   grade: number;
   imageUrl: string;
+  formGroup: FormGroup;
 
   constructor(private formBuilder: FormBuilder, private http: HttpClient) {
     this.formGroup = this.formBuilder.group({
