@@ -24,6 +24,7 @@ export class AddStudentComponent {
   }
 
   onSubmit() {
+    console.log('add student controls', this.formGroup.controls)
     const student = {
       name: this.formGroup.controls.name.value,
       age: this.formGroup.controls.age.value,
