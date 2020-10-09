@@ -11,13 +11,21 @@ export class StudentListComponent implements OnInit {
   studentId: string = '';
   page: number = 1;
   id: string = '';
+  limit: number = 25;
+  gradeOrder: number = 1;
   @Output() selectStudent = new EventEmitter<string>()
 
   constructor(private http: HttpClient) { }
 
-  getStudentList(page, limit, sortOrder) {
-    this.http.get(`/students?page=${page}&limit=${limit}&sortOrder=${sortOrder}`)
+  getStudentList(page: number, limit: number, sortOrder: any, order: any) {
+    this.http.get(`/students?page=${page}&limit=${limit}&sortOrder=${sortOrder}&order=${order}`)
       .subscribe((data: any) => this.studentList = data.studentRecords)
+  }
+
+  sortGrade() {
+    this.getStudentList(this.page, this.limit, 'grade', this.gradeOrder)
+    if (this.gradeOrder === 1) this.gradeOrder = 0
+    else this.gradeOrder = 1
   }
 
   handleStudentClick(data: any) {
@@ -25,6 +33,6 @@ export class StudentListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getStudentList(1, 25, null)
+    this.getStudentList(1, this.limit, null, null)
   }
 }
