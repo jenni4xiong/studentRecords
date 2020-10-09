@@ -24,7 +24,6 @@ export class AddStudentComponent {
   }
 
   onSubmit() {
-    console.log('add student controls', this.formGroup.controls)
     const student = {
       name: this.formGroup.controls.name.value,
       age: this.formGroup.controls.age.value,
@@ -34,7 +33,7 @@ export class AddStudentComponent {
     this.addStudent(student)
   }
 
-  addStudent(student) {
+  addStudent(student: any) {
     this.http.post('/students', student)
       .subscribe((data) => console.log('successful post', data))
   }

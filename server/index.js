@@ -28,7 +28,7 @@ app.post('/students', (req, res) => {
     .catch((err) => res.sendStatus(400).send(err));
 });
 
-app.patch('/students/:id', (req, res) => {
+app.put('/students/:id', (req, res) => {
   db.updateStudent(req.params.id, req.body)
     .then(() => res.sendStatus(200))
     .catch((err) => res.sendStatus(400).send(err));

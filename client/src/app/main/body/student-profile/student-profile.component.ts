@@ -35,12 +35,24 @@ export class StudentProfileComponent implements OnInit {
   }
 
   onDelete(id: string) {
-    console.log('deleting id:', id)
+    this.http.delete(`/students/${id}`)
+    this.student = {}
   }
 
-  onSubmit(event: MouseEvent) {
-    console.log('on submit event:', event)
+  updateStudent(id: string, student: any) {
+    console.log('student', student, id)
+    // this.http.put(`/students/${id}`, student)
+  }
 
+  onSubmit(id: string) {
+    console.log('checking name', this.formGroup)
+    const studentInfo = {
+      name: this.formGroup.controls.name.value,
+      age: this.formGroup.controls.age.value,
+      grade: this.formGroup.controls.grade.value,
+      imageUrl: this.formGroup.controls.imageUrl.value,
+    }
+    this.updateStudent(id, studentInfo)
   }
 
   ngOnChanges(changes): void {
