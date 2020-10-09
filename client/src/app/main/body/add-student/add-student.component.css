@@ -4,4 +4,6 @@
   border-radius: 15px;
   border-color: grey;
   border-width: 50px; 
+  display: flex;
+  align-items: center;
 }

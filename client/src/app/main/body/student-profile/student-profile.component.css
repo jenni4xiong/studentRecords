@@ -4,8 +4,21 @@
   background-color: white;
   margin-left: .5vw;
   border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#student-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #student-picture {
   height: 50px;
+}
+
+#student-profile-title {
+  margin: 0;
 }
