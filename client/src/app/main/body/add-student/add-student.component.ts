@@ -38,8 +38,7 @@ export class AddStudentComponent {
   }
 
   addStudent(student: any) {
-    console.log('student to add:', student)
     this.http.post('/students', student)
-      .subscribe((data) => console.log('successful post', data))
+      .subscribe((data) => console.log('successful post', data));
   }
 }

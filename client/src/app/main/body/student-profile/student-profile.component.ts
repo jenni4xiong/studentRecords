@@ -20,7 +20,7 @@ export class StudentProfileComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private http: HttpClient) { }
 
-  studentPicture: string = 'https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png'
+  studentPicture: string = 'https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png';
 
   createProfile(data) {
     const student = data[0]
@@ -30,14 +30,14 @@ export class StudentProfileComponent implements OnInit {
       grade: student.grade,
       picture: student.picture,
     })
-    this.studentPicture = student.picture
-    this.studentId = student._id
+    this.studentPicture = student.picture;
+    this.studentId = student._id;
   }
 
   getStudent(id: string) {
     if (id.length > 0) {
       this.http.get(`/students/${id}`)
-        .subscribe((data) => { console.log('data', data); this.createProfile(data) })
+        .subscribe((data) => { console.log('data', data); this.createProfile(data) });
     }
   }
 
@@ -50,13 +50,13 @@ export class StudentProfileComponent implements OnInit {
           grade: [null],
           picture: [''],
         })
-      )
-    this.rerenderList.emit()
+      );
+    this.rerenderList.emit();
   }
 
   updateStudent(id: string, student: any) {
     this.http.put(`/students/${id}`, student)
-      .subscribe((data) => console.log(data))
+      .subscribe((data) => console.log(data));
   }
 
   onSubmit(id: string) {
@@ -66,16 +66,16 @@ export class StudentProfileComponent implements OnInit {
       grade: this.profileForm.controls.grade.value,
       imageUrl: this.profileForm.controls.picture.value,
     }
-    this.updateStudent(id, studentInfo)
-    this.rerenderList.emit(true)
+    this.updateStudent(id, studentInfo);
+    this.rerenderList.emit(true);
   }
 
   ngOnChanges(changes): void {
-    this.getStudent(changes.studentId.currentValue)
+    this.getStudent(changes.studentId.currentValue);
   }
 
   ngOnInit(): void {
-    this.getStudent(this.studentId)
+    this.getStudent(this.studentId);
   }
 
 }

@@ -18,52 +18,50 @@ export class StudentListComponent implements OnInit {
   gradeOrder: number;
   nameOrder: number;
   sortBy: any = null;
-  @Input() shouldRerender: boolean
-  @Output() selectStudent = new EventEmitter<string>()
-  @Output() toggleRerender = new EventEmitter<boolean>()
+  @Input() shouldRerender: boolean;
+  @Output() selectStudent = new EventEmitter<string>();
+  @Output() toggleRerender = new EventEmitter<boolean>();
 
   constructor(private http: HttpClient) { }
 
   getStudentList() {
     let order: any;
     if (this.sortBy === null) {
-      order = null
+      order = null;
     } else if (this.sortBy === 'name') {
-      order = this.nameOrder
+      order = this.nameOrder;
     } else {
       order = this.gradeOrder;
     }
 
     let sort: any;
     if (this.sortBy) {
-      sort = `&sortBy=${this.sortBy}&order=${order}`
+      sort = `&sortBy=${this.sortBy}&order=${order}`;
     } else {
-      sort = ``
+      sort = ``;
     }
     console.log('limit', this.limit)
     this.http.get(`/students?page=${this.page}&limit=${this.limit}${sort}`, { observe: 'response' })
       .subscribe((data) => {
         let totalCount: any;
         this.studentList = data.body.studentRecords;
-        totalCount = parseInt(data.headers.get('x-total-count'))
-        this.totalPages = Math.ceil(totalCount / this.limit)
-        console.log('total pages', this.totalPages)
+        totalCount = parseInt(data.headers.get('x-total-count'));
+        this.totalPages = Math.ceil(totalCount / this.limit);
       })
   }
 
   sort(sort: string) {
-    console.log('in sort')
     let order;
     if (sort === 'grade') {
       order = this.gradeOrder;
       this.sortBy = 'grade';
     } else {
       order = this.nameOrder;
-      this.sortBy = 'name'
+      this.sortBy = 'name';
     }
     if (order === 1) {
       if (sort === 'grade') this.gradeOrder = -1;
-      else this.nameOrder = -1
+      else this.nameOrder = -1;
     }
     else {
       if (sort === 'grade') this.gradeOrder = 1;
@@ -73,22 +71,22 @@ export class StudentListComponent implements OnInit {
   }
 
   handleStudentClick(data: any) {
-    this.selectStudent.emit(data._id)
+    this.selectStudent.emit(data._id);
   }
 
   handlePageClick(type: string) {
 
-    if (type === 'next' && (this.page < this.totalPages)) this.page += 1
+    if (type === 'next' && (this.page < this.totalPages)) this.page += 1;
 
     else if (type === 'prev' && (this.page > 1)) {
-      this.page -= 1
+      this.page -= 1;
     }
-    this.getStudentList()
+    this.getStudentList();
   }
 
   ngOnChanges(changes): void {
     if (!changes.shouldRerender.previousValue && changes.shouldRerender.currentValue) {
-      this.getStudentList()
+      this.getStudentList();
       this.toggleRerender.emit(false);
     }
   }
@@ -96,6 +94,6 @@ export class StudentListComponent implements OnInit {
   ngOnInit(): void {
     this.nameOrder = -1;
     this.gradeOrder = -1;
-    this.getStudentList()
+    this.getStudentList();
   }
 }
