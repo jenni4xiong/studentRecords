@@ -9,11 +9,7 @@ const paginatedResults = (model) => {
 
     const startIndex = (page - 1) * limit;
 
-    // if (sortBy) {
-    //   if (order === '1') res.paginatedResults = await model.find().sort({ [sortBy]: 1 }).limit(limit).skip(startIndex).exec()
-    //   else res.paginatedResults = await model.find().sort({ [sortBy]: -1 }).limit(limit).skip(startIndex).exec()
-    // } else res.paginatedResults = await model.find().limit(limit).skip(startIndex).exec()
-    console.log('req.query', req.query)
+    console.log('LIMIT', limit)
     if (sortBy) {
       console.log('sortBy', sortBy)
       res.paginatedResults = await model.find().sort({ [sortBy]: parseInt(order) }).limit(limit).skip(startIndex).exec()
