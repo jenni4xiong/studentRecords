@@ -5,5 +5,11 @@
   border-color: grey;
   border-width: 50px; 
   display: flex;
-  align-items: center;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.input {
+  margin-left: .5vw;
+  margin-right: .5vw;
 }

@@ -1,13 +1,21 @@
-<div id="add-student">
-  <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
-    <label>Name:</label>
-    <input type="text" formControlName="name" />
-    <label>Grade:</label>
-    <input type="text" formControlName="grade" />
-    <label>Age:</label>
-    <input type="text" formControlName="age" />
-    <label>Image Url:</label>
-    <input type="text" formControlName="imageUrl" />
-    <button type="submit">Add Student</button>
+<div>
+  <form id="add-student" [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+    <label class="input">
+      Name:
+      <input type="text" formControlName="name" />
+    </label>
+    <label class="input">
+      Grade:
+      <input type="text" formControlName="grade" />
+    </label>
+    <label class="input">
+      Age:
+      <input type="text" formControlName="age" />
+    </label>
+    <label class="input">
+      Image Url:
+      <input type="text" formControlName="imageUrl" />
+    </label>
+    <button class="input" type="submit">Add Student</button>
   </form>
 </div>

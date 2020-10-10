@@ -17,6 +17,7 @@
 #add-student-container {
   display: flex;
   justify-content: center;
+  align-items: center;
   background-color: white;
   margin-top: 2vh;
   height: 10vh;

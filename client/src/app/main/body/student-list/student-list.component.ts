@@ -18,7 +18,7 @@ export class StudentListComponent implements OnInit {
   studentId: string = '';
   page: number = 1;
   id: string = '';
-  limit: number = 25;
+  limit: number = 15;
   gradeOrder: number;
   nameOrder: number;
   sortBy: any = null;
