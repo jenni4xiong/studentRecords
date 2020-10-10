@@ -1,7 +1,7 @@
 # Project Name
 > The Golden State Academy Student Records
 
-### Installing Dependencies
+### App Set Up
 
 From within the root directory:
 
