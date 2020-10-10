@@ -30,7 +30,7 @@
 
 #student-picture {
   margin: 2vh;
-  width: 20vw;
+  width: 26vh;
 }
 
 #student-profile-title {
@@ -57,6 +57,10 @@
   font-weight: bold;
   font-size: 1em;
   background-color: #FF8945;
+}
+
+button:hover {
+  cursor: pointer;
 }
 
 .margin {

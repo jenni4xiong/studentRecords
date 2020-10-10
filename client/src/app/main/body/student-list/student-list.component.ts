@@ -1,11 +1,6 @@
 import { Component, EventEmitter, Output, Input, OnInit } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 
-/*
-  TODO: get num count from header
-        make get request when student is saved or deleted
-        don't allow page to go past the last
-*/
 
 @Component({
   selector: 'app-student-list',

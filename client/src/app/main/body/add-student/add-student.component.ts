@@ -28,12 +28,17 @@ export class AddStudentComponent {
       name: this.formGroup.controls.name.value,
       age: this.formGroup.controls.age.value,
       grade: this.formGroup.controls.grade.value,
-      imageUrl: this.formGroup.controls.imageUrl.value,
+      picture: this.formGroup.controls.imageUrl.value,
     }
     this.addStudent(student)
+    this.formGroup.controls.name.value = '';
+    this.formGroup.controls.age.value = null;
+    this.formGroup.controls.grade.value = null;
+    this.formGroup.controls.imageUrl.value = '';
   }
 
   addStudent(student: any) {
+    console.log('student to add:', student)
     this.http.post('/students', student)
       .subscribe((data) => console.log('successful post', data))
   }

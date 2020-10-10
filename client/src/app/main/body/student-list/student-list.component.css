@@ -20,6 +20,11 @@
   margin: 0;
 }
 
+.table-fields:hover {
+  color: blue;
+  cursor: pointer;
+}
+
 .table {
   width: 100%;
   display: flex;
@@ -30,6 +35,16 @@
 
 .name {
   width: 15vw;
+}
+
+.name:hover {
+  color: blue;
+  cursor: pointer;
+}
+
+.grade:hover {
+  color: blue;
+  cursor: pointer;
 }
 
 .grade {
@@ -55,9 +70,13 @@
   width: 4vw;
   min-width: 40px;
   padding: 1vh;
-  margin: 1vh;
+  margin: 2vh;
   font-weight: bold;
   font-size: .7em;
+}
+
+.button:hover {
+  cursor: pointer;
 }
 
 
