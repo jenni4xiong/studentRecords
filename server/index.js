@@ -12,6 +12,8 @@ app.use(express.static('../client/dist'))
 
 app.get('/students', pagination(db.Student), (req, res) => {
   res.set('x-total-count', res.totalCount);
+  console.log('results', res.paginatedResults.length)
+  console.log('results', res.paginatedResults)
   res.send({ studentRecords: res.paginatedResults });
 });
 

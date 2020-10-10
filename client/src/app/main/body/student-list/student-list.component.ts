@@ -40,7 +40,7 @@ export class StudentListComponent implements OnInit {
     } else {
       sort = ``
     }
-
+    console.log('limit', this.limit)
     this.http.get(`/students?page=${this.page}&limit=${this.limit}${sort}`, { observe: 'response' })
       .subscribe((data) => {
         let totalCount: any;
@@ -77,9 +77,11 @@ export class StudentListComponent implements OnInit {
   }
 
   handlePageClick(type: string) {
-    if (type === 'next') this.page += 1
-    else {
-      if (this.page > 1) this.page -= 1
+
+    if (type === 'next' && (this.page < this.totalPages)) this.page += 1
+
+    else if (type === 'prev' && (this.page > 1)) {
+      this.page -= 1
     }
     this.getStudentList()
   }
