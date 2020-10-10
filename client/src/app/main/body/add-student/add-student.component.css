@@ -6,8 +6,10 @@
   border-color: grey;
   border-width: 50px; 
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
   justify-content: space-evenly;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .input {
@@ -15,10 +17,31 @@
   margin-right: .5vw;
   display: flex;
   align-items: center;
+  font-size: 2vh;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.input-box-large {
+  margin-left: .5em;
+  width: 13vw;
+  height: 2.5vh;
+  min-height: 10px;
+}
+
+.input-box-small {
+  margin-left: .5em;
+  width: 4vw;
+  height: 2.5vh;
+  min-height:10px;
 }
 
 .button {
   border:0;
   border-radius: 1vh;
-  padding: 2vh;
+  min-width: 8vw;
+  padding: 1vh;
+  font-weight: bold;
+  font-size: 2vh;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-color: #FF8945;
 }

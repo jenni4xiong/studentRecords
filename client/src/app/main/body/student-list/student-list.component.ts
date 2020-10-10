@@ -15,6 +15,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 
 export class StudentListComponent implements OnInit {
   studentList: any = [];
+  totalPages: number = 0;
   studentId: string = '';
   page: number = 1;
   id: string = '';
@@ -46,7 +47,13 @@ export class StudentListComponent implements OnInit {
     }
 
     this.http.get(`/students?page=${this.page}&limit=${this.limit}${sort}`, { observe: 'response' })
-      .subscribe((data) => { this.studentList = data.body.studentRecords; console.log('headers from get', data.headers.get('x-total-count')) })
+      .subscribe((data) => {
+        let totalCount: any;
+        this.studentList = data.body.studentRecords;
+        totalCount = parseInt(data.headers.get('x-total-count'))
+        this.totalPages = Math.ceil(totalCount / this.limit)
+        console.log('total pages', this.totalPages)
+      })
   }
 
   sort(sort: string) {

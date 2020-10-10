@@ -1,4 +1,5 @@
 <div id="student-list-container">
+  <h1 class="title">Student Records</h1>
   <table class="table">
     <thead id="table-head">
       <tr id="table-fields">
@@ -13,8 +14,9 @@
       </tr>
     </tbody>
   </table>
-  <div class="buttons">
-    <button (click)="handlePageClick('prev')">prev</button>
-    <button (click)="handlePageClick('next')">next</button>
+  <div class="button-container">
+    <button class="button" (click)="handlePageClick('prev')">prev</button>
+    <p>{{page}}/{{totalPages}}</p>
+    <button class="button" (click)="handlePageClick('next')">next</button>
   </div>
 </div>

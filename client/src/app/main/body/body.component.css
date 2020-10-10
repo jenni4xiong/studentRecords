@@ -1,16 +1,16 @@
 #body-container {
   width: 80vw;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  align-items: center;
 }
 
 #list-and-profile-container {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   width: 80vw;
-  height:84vh;
   margin-top:2vh;
 }
 
