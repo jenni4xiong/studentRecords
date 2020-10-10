@@ -1,5 +1,5 @@
 #student-profile-container {
-  width: 39.5vw;
+  width: 34.5vw;
   height:100%;
   background-color: white;
   margin-left: .5vw;
@@ -7,18 +7,45 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 2.5vw;
+}
+
+#student-info-container {
+  display: flex;
+  height:23vh;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 3vh;
 }
 
 #student-info {
   display: flex;
+  height:17vh;
   flex-direction: column;
-  align-items: center;
+  justify-content: space-between;
+  align-items: left;
+  margin-bottom: 2.5vh;;
 }
 
 #student-picture {
-  height: 50px;
+  margin: 2vh;
+  height: 20vw;
 }
 
 #student-profile-title {
+  padding-top: 1.5vh;
+  padding-bottom: .5vh;
   margin: 0;
+}
+
+.buttons {
+  width: 7vw;
+  align-items: center;
+  padding: 1vh;
+  border:0;
+  border-radius: 1vh;
+}
+
+.margin {
+  margin: 1vh;
 }
