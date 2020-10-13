@@ -15,6 +15,10 @@ export class AddStudentComponent {
   formGroup: FormGroup;
 
   constructor(private formBuilder: FormBuilder, private http: HttpClient) {
+    this.emptyForm();
+  }
+
+  emptyForm() {
     this.formGroup = this.formBuilder.group({
       name: '',
       age: null,
@@ -31,10 +35,7 @@ export class AddStudentComponent {
       picture: this.formGroup.controls.imageUrl.value,
     }
     this.addStudent(student)
-    this.formGroup.controls.name.value = '';
-    this.formGroup.controls.age.value = null;
-    this.formGroup.controls.grade.value = null;
-    this.formGroup.controls.imageUrl.value = '';
+    this.emptyForm();
   }
 
   addStudent(student: any) {

@@ -42,7 +42,7 @@ export class StudentListComponent implements OnInit {
     }
     console.log('limit', this.limit)
     this.http.get(`/students?page=${this.page}&limit=${this.limit}${sort}`, { observe: 'response' })
-      .subscribe((data) => {
+      .subscribe((data: any) => {
         let totalCount: any;
         this.studentList = data.body.studentRecords;
         totalCount = parseInt(data.headers.get('x-total-count'));
