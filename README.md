@@ -26,3 +26,9 @@ npm run build
   * PUT `students/:id`
 ### Delete student
   * DELETE `students/:id`
+
+## Planning
+
+![Website Mock](./docs/mock.png)
+
+![Component Layout](./docs/components.png)
