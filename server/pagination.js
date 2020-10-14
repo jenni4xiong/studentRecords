@@ -1,5 +1,3 @@
-const e = require("express");
-
 const paginatedResults = (model) => {
   return async (req, res, next) => {
     const page = parseInt(req.query.page);
